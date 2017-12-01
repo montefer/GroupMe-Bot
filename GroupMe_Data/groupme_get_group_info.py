@@ -44,6 +44,10 @@ response = requests.get(groups_index)
 
 group_list = response.json()['response']#[0]#['name']#[:]['id']
 
+
+
+
+#########Probably useless, but I haven't looked at this in a month so I probably won't delete it just yet#################
 def clean_json(json_response):
     i=0
     #group = 'ML Fun With Bots' #input('What group do you want to pull data from?\n')
@@ -60,18 +64,19 @@ def clean_json(json_response):
             i+=1
             
 
+
+####################Need to fix this, but since I'm still testing everything, I'm just gonna keep this as it is for now#####################
 def flatten_json(json_response):
     i=0
     group = 'ML Fun With Bots' #input('What group do you want to pull data from?\n')
-    #group = '[Insert Group Chat Name Here]'
     for group_iteration in group_list:
         if group==group_list[i]['name']:
-            #print('Members: ', group_list[i]['members']) ##Gets entire dict within dict
-            print(group_list[i])
-            print('Members: \n')
-            for member in group_list[i]['members']:
-                print(member['nickname'])  
-                print(member,'\n') #will print out each individual dict for each member
+            print('\n', group_list[i])
+#            print('Members: ', group_list[i]['members']) ##Gets entire dict within dict
+#            print('Members: \n')
+#            for member in group_list[i]['members']:
+#                print(member['nickname'])  
+#                print(member,'\n') #will print out each individual dict for each member
             i+=1
         else:
             i+=1        
@@ -106,15 +111,22 @@ def get_group_phone_number(group_info):
             i+=1
         else:
             i+=1
-    
-    
-if __name__=="__main__":
-    other_url = 'https://api.groupme.com/v3/groups'+token
-    getting = requests.get(other_url)
 
+def get_group_members(group_info):
+    i=0
+    group = 'ML Fun With Bots' #input('What group do you want to pull data from?\n')
+    for group_iteration in group_list:
+        if group==group_list[i]['name']:
+#            print('Members: ', group_list[i]['members']) ##Gets entire dict within dict
+            print('\nMembers:')
+            for member in group_list[i]['members']:
+                print(member['nickname'])  
+#                print(member,'\n') #will print out each individual dict for each member
+            i+=1
+        else:
+            i+=1       
+    
+    
+    
+    #Establish what the groupInfo json response is, then test the functions in the console
     groupInfo = flatten_json(response.json())
-
-    
-    get_group_id(groupInfo)
-    get_group_name(groupInfo)
-    

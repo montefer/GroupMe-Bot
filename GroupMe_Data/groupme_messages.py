@@ -26,6 +26,10 @@ response = requests.get(groups_index)
 
 group_list = response.json()['response']#[0]#['name']#[:]['id']
 
+
+
+
+##########################################DO NOT DELETE THIS##################################
 def clean_json(json_response):
     i=0
     #group = 'ML Fun With Bots' #input('What group do you want to pull data from?\n')
@@ -58,6 +62,8 @@ def flatten_json(json_response):
         else:
             i+=1        
     
+    
+################################DO NOT DELETE THIS###############################################
 
     
     
